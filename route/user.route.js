@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config()
 const app=express.Router();
 app.post("/signup", async (req, res) => {
-    const { email, pass, name, age } = req.body;
+    const { email, pass,name, age } = req.body;
   
     try {
       bcrypt.hash(pass, 5, async (err, secure_password) => {
