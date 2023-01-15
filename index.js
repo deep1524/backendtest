@@ -3,7 +3,9 @@ require("dotenv").config();
 let express = require("express");
 let app = express();
 let cors = require("cors");
-
+app.use(cors({
+  origin:"*",
+}))
 let { connection } = require("./config/db");
 
 
