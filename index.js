@@ -12,11 +12,7 @@ let { connection } = require("./config/db");
 const  authenticate  = require("./middleware/authenticate");
 const  TodoRouter  = require("./route/todo.route")
 const userRouter  =require("./route/user.route")
-const cors=require("cors");
-app.use(express.json());
-app.use(cors({
-  origin:"*",
-}))
+
 
 app.use("/user",userRouter);
 
