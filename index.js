@@ -1,28 +1,31 @@
-
 const express = require("express");
-const  connection  = require("./config/db");
-const userRouter  =require("./route/user.route")
-const  TodoRouter  = require("./route/todo.route")
-const  authenticate  = require("./middleware/authenticate");
-require("dotenv").config();
-const cors = require("cors");
-let app = express();
+const connection = require("./config/db");
+const userRouter=require("./route/user.route")
+const noteRouter=require("./route/todo.route");
+const authetication=require("./middleware/authenticate")
+require("dotenv").config()
+const cors=require("cors");
+const app = express();
 app.use(cors({
   origin:"*",
 }))
 app.use(express.json());
-app.use("/user",userRouter);
-
-app.use(authenticate)
-app.use("/todos", TodoRouter);
 
 
-app.listen(process.env.PORT, async () => {
+app.use("/users",userRouter)
+app.use(authetication)
+app.use("/notes",noteRouter)
+
+
+
+app.listen(process.env.port, async () => {
   try {
     await connection;
-    console.log("Connected to database");
-    console.log("Listening on port " + process.env.PORT);
+
+    console.log("connection established");
   } catch (err) {
-    console.log("Connection to DB failed");
+    res.send("something went wrong");
+    console.log(err);
   }
+  console.log(`listening on port ${process.env.port}`);
 });
