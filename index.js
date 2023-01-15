@@ -1,19 +1,16 @@
-require("dotenv").config();
 
-let express = require("express");
+const express = require("express");
+const { connection } = require("./config/db");
+const userRouter  =require("./route/user.route")
+const  TodoRouter  = require("./route/todo.route")
+const  authenticate  = require("./middleware/authenticate");
+require("dotenv").config();
+const cors = require("cors");
 let app = express();
-let cors = require("cors");
 app.use(cors({
   origin:"*",
 }))
-let { connection } = require("./config/db");
-
-
-const  authenticate  = require("./middleware/authenticate");
-const  TodoRouter  = require("./route/todo.route")
-const userRouter  =require("./route/user.route")
-
-
+app.use(express.json());
 app.use("/user",userRouter);
 
 app.use(authenticate)
