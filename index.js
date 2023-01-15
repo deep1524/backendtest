@@ -1,6 +1,6 @@
 
 const express = require("express");
-const { connection } = require("./config/db");
+const  connection  = require("./config/db");
 const userRouter  =require("./route/user.route")
 const  TodoRouter  = require("./route/todo.route")
 const  authenticate  = require("./middleware/authenticate");
